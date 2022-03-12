@@ -4,7 +4,7 @@
 #
 # Description: This program takes two user-defined orbits and calculates the correct
 # Hohmann transfer orbit.  It plots the two orbits and the transfer orbit
-# along with a 3D model of Earth.  The program also shows how the 
+# along with a 3D model of Earth.  The program also shows how the
 # spacecraft progresses through the orbit as well as how the ground track
 # extends across the surface of the Earth.
 #
@@ -28,7 +28,7 @@ a1 = 16000; e1 = 0.0; i1 = deg2rad(10); Ω1 = deg2rad(0); ω1 = deg2rad(180); ν
 # Define the desired target orbit
 a2 = 9000; e2 = 0.1; i2 = deg2rad(10); Ω2 = deg2rad(0); ω2 = deg2rad(0); ν2 = deg2rad(0); numP2 = 2
 
-save_video = true
+save_video = false
 
 #####################################################################################################
 # Setup
@@ -85,7 +85,7 @@ if force_reload_all || force_reload_mesh || !@isdefined cassini
     cassini = load("../assets/cassini_small.stl")
 end
 
-# Initialize the figure with 4k size
+# Initialize the figure
 fig = Figure()
 
 # Create an observable that will keep track of the current time of the scene
@@ -111,10 +111,10 @@ buttons = b1, b2, b3, b4, b5, b6, b7 =
 step_size = Observable(1)
 
 # Update the step size observable when a button is clicked
-for (ix, b) in enumerate(buttons) 
-    on(b.clicks) do val 
-        step_size[] = button_values[ix]       
-    end 
+for (ix, b) in enumerate(buttons)
+    on(b.clicks) do val
+        step_size[] = button_values[ix]
+    end
 end
 
 
@@ -304,7 +304,7 @@ if !updated || force_reload_all || force_reload_orbits
         gnd_trk_x[1:ix] = [gnd_trk[1:ix, 1]...]
         gnd_trk_y[1:ix] = [gnd_trk[1:ix, 2]...]
         gnd_trk_z[1:ix] = [gnd_trk[1:ix, 3]...]
-        
+
     end
 
     # Calculate the offset angle, θ, between the spacecraft and the ground track
@@ -318,7 +318,7 @@ if !updated || force_reload_all || force_reload_orbits
     gnd_trk_x = [gnd_trk[1:end, 1]...]
     gnd_trk_y = [gnd_trk[1:end, 2]...]
     gnd_trk_z = [gnd_trk[1:end, 3]...]
-         
+
     # Save each relevant variable into a single JLD datafile
     jldsave(filename; orbit1, orbit2, numP1, numP2,
          r1₁, r2₁, r3₁, t₁,
@@ -339,11 +339,11 @@ else
 
         orbit1, orbit2, numP1, numP2,
         r1₁, r2₁, r3₁, t₁,
-        r1₂, r2₂, r3₂, t₂, 
-        r1ₜ, r2ₜ, r3ₜ, tₜ, 
+        r1₂, r2₂, r3₂, t₂,
+        r1ₜ, r2ₜ, r3ₜ, tₜ,
         r1_cmb, r2_cmb, r3_cmb, t_cmb, r_cmb_mag,
-        r1_cmb_unit, r2_cmb_unit, r3_cmb_unit, 
-        gnd_trk_x, gnd_trk_y, gnd_trk_z = 
+        r1_cmb_unit, r2_cmb_unit, r3_cmb_unit,
+        gnd_trk_x, gnd_trk_y, gnd_trk_z =
             load(filename,"orbit1","orbit2","numP1","numP2",
             "r1₁","r2₁","r3₁","t₁",
             "r1₂","r2₂","r3₂","t₂",
@@ -477,8 +477,8 @@ function simulate(i)
             #continue
         end
     end
-    
-    
+
+
     # Move the spacecraft mesh to the current position on the orbit
     GLMakie.translate!(spacecraft, r1_cmb[step[]], r2_cmb[step[]], r3_cmb[step[]])
 
@@ -489,9 +489,7 @@ function simulate(i)
     GLMakie.rotate!(earth_plot, DCMtoQuat(DCMx90 * eigenaxisToDCM(e,  scene_time[] * ωₑ)))
     # Rotate the ground track to match the rotation of the Earth
     GLMakie.rotate!(ground_track, DCMtoQuat(eigenaxisToDCM(e,  scene_time[] * ωₑ)))
-    # if !show_track[]
-    #     local ground_track = 0 
-    # end
+
     # Wait for 1/45 of a second to give the simulation time to load
     sleep(1/45)
 
