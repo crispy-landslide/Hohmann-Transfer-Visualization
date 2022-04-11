@@ -1,7 +1,7 @@
 # Hohmann Transfer Visualization
 This is a script written in the [Julia](https://julialang.org/) programming language for visualizing Hohmann transfers.
 
-![](/hohmann_transfer_example.mp4)
+![](/assets/examples/hohmann_transfer_example.ogv)
 
 This script uses the [Makie](https://github.com/JuliaPlots/Makie.jl) package to handle the visualization.
 
