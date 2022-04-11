@@ -3,7 +3,7 @@ This is a script written in the [Julia](https://julialang.org/) programming lang
 
 ![](https://user-images.githubusercontent.com/48504814/153811618-2ffef60a-59c9-4773-8c46-d9b469f4b37a.mp4)
 
-[![]()](https://user-images.githubusercontent.com/48504814/153811618-2ffef60a-59c9-4773-8c46-d9b469f4b37a.mp4)
+[![](https://user-images.githubusercontent.com/48504814/153811618-2ffef60a-59c9-4773-8c46-d9b469f4b37a.mp4)](https://user-images.githubusercontent.com/48504814/153811618-2ffef60a-59c9-4773-8c46-d9b469f4b37a.mp4)
 
 This script uses the [Makie](https://github.com/JuliaPlots/Makie.jl) package to handle the visualization.
 
