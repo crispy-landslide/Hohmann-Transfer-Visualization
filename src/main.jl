@@ -93,7 +93,7 @@ scene_time = Observable(0.0)
 # Create a function that calculates the current time using the scene_time observable
 getTime = @lift(string("t = ", Int(round(($scene_time))), " sec;  ", round(($scene_time) / 3600, digits=2), " hr"))
 # Create the location on the window that will display the current time
-time_display = fig[1, 1] = Label(fig, getTime, textsize=40, color=:white)
+time_display = fig[1, 1] = Label(fig, getTime, fontsize=40, color=:white)
 
 
 # Create a button grid for all of the simulation speed buttons
@@ -120,7 +120,7 @@ end
 
 # Display a text box showing the currently selected speed
 speed = @lift(string("Speed: ×", Int(round($step_size))))
-Speed = buttongrid[1, 8] = Label(fig, speed, textsize=20, color=:white)
+Speed = buttongrid[1, 8] = Label(fig, speed, fontsize=20, color=:white)
 
 grid2[1, 2] = controlgrid = GridLayout(tellwidth = false)
 # Create an observable specifying whether to rewind the visualization
